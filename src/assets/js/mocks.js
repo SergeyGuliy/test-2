@@ -49,8 +49,20 @@ export default {
       key: 'communal',
       items: [
         {
-          img: '',
-          slug: '',
+          img: 'gaz.png',
+          slug: 'gaz',
+        },
+        {
+          img: 'water.jpg',
+          slug: 'water',
+        },
+        {
+          img: 'electro.jpg',
+          slug: 'electro',
+        },
+        {
+          img: 'www.png',
+          slug: 'www',
         },
       ],
     },
@@ -59,8 +71,12 @@ export default {
       key: 'banks',
       items: [
         {
-          img: '',
-          slug: '',
+          img: 'sber.jpeg',
+          slug: 'sber',
+        },
+        {
+          img: 'privat.jpg',
+          slug: 'privat',
         },
       ],
     },
@@ -69,8 +85,20 @@ export default {
       key: 'games',
       items: [
         {
-          img: '',
-          slug: '',
+          img: 'cs.png',
+          slug: 'cs',
+        },
+        {
+          img: 'dota.png',
+          slug: 'dota',
+        },
+        {
+          img: 'wot.png',
+          slug: 'wot',
+        },
+        {
+          img: 'wow.png',
+          slug: 'wow',
         },
       ],
     },

@@ -1,48 +1,50 @@
 <template>
-  <v-row class="home">
-    <v-col cols="4">
-      <v-card>
-        <v-toolbar
-                flat
-                color="primary"
-                dark
-        >
-          <v-toolbar-title>Категории</v-toolbar-title>
-        </v-toolbar>
-        <div
-                v-if="!tabs"
-                class="d-flex align-center justify-center"
-                style="min-height: 100%"
-        >
-          <v-progress-circular
-                  :size="70"
-                  :width="7"
-                  color="purple"
-                  indeterminate
-          />
-        </div>
-        <v-tabs vertical v-model="activeTab" v-else>
-          <v-tab
-              v-for="(tab, index) in tabs"
-              :key="index"
-              :href="'#' + tab.key"
-              class="justify-start"
+  <v-container>
+    <v-row class="home">
+      <v-col cols="4">
+        <v-card>
+          <v-toolbar
+              flat
+              color="primary"
+              dark
           >
-            <template>
-              <v-icon left :key="tab.key">
-                {{tab.icon}}
-              </v-icon>
-              {{tab.name}}
-            </template>
-          </v-tab>
-        </v-tabs>
-      </v-card>
-    </v-col>
+            <v-toolbar-title>Категории</v-toolbar-title>
+          </v-toolbar>
+          <div
+              v-if="!tabs"
+              class="d-flex align-center justify-center"
+              style="min-height: 100%"
+          >
+            <v-progress-circular
+                :size="70"
+                :width="7"
+                color="purple"
+                indeterminate
+            />
+          </div>
+          <v-tabs vertical v-model="activeTab" v-else>
+            <v-tab
+                v-for="(tab, index) in tabs"
+                :key="index"
+                :href="'#' + tab.key"
+                class="justify-start"
+            >
+              <template>
+                <v-icon left :key="tab.key">
+                  {{tab.icon}}
+                </v-icon>
+                {{tab.name}}
+              </template>
+            </v-tab>
+          </v-tabs>
+        </v-card>
+      </v-col>
 
-    <v-col cols="8">
-      <OperatorsList :getActiveTabName="getActiveTabName" :activeTab="activeTab"/>
-    </v-col>
-  </v-row>
+      <v-col cols="8">
+        <OperatorsList :getActiveTabName="getActiveTabName" :activeTab="activeTab"/>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

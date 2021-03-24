@@ -5,10 +5,10 @@
       :to="{name: 'ActionPage', params: { slug: operator.slug}}"
   >
     <v-img
+        contain
         :src="require(`../../assets/images/${operator.img}`)"
         class="white--text align-end"
     >
-      <v-card-title>{{operator.slug}}</v-card-title>
     </v-img>
   </v-card>
 </template>
@@ -31,6 +31,10 @@ export default {
 
 <style lang='scss'>
   .operator-card {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
   }
 </style>
