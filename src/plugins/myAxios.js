@@ -1,28 +1,14 @@
-export default {
-  getTabs: () => new Promise((resolve) => {
+import mockData from '../assets/mocks';
+
+function myGet(data) {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      resolve([
-        {
-          name: 'Operators',
-          key: 'operators',
-          icon: '',
-        },
-        {
-          name: 'Сommunal',
-          key: 'сommunal',
-          icon: '',
-        },
-        {
-          name: 'Banks',
-          key: 'banks',
-          icon: '',
-        },
-        {
-          name: 'Games',
-          key: 'games',
-          icon: '',
-        },
-      ]);
+      resolve(data);
     }, 1000);
-  }),
+  });
+}
+
+export default {
+  getTabs: () => myGet(mockData.tabs),
+  getTab: (tab) => myGet(mockData.tabsDetailed[tab]),
 };

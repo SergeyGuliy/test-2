@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="app">
     <v-app-bar
       app
       color="primary"
@@ -24,7 +24,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
+      <v-container class="app__container py-8">
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -46,3 +46,14 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  .app{
+    .app__container{
+      min-height: 100%;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+  }
+</style>

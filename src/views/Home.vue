@@ -1,16 +1,33 @@
 <template>
   <v-row class="home">
-    <v-col cols="5">
+    <v-col cols="4">
       <v-card>
         <v-toolbar
                 flat
                 color="primary"
                 dark
         >
-          <v-toolbar-title>User Profile</v-toolbar-title>
+          <v-toolbar-title>Категории</v-toolbar-title>
         </v-toolbar>
-        <v-tabs vertical v-model="activeTab">
-          <v-tab v-for="(tab, index) in tabs" :key="index" :href="'#' + tab.key">
+        <div
+                v-if="!tabs"
+                class="d-flex align-center justify-center"
+                style="min-height: 100%"
+        >
+          <v-progress-circular
+                  :size="70"
+                  :width="7"
+                  color="purple"
+                  indeterminate
+          />
+        </div>
+        <v-tabs vertical v-model="activeTab" v-else>
+          <v-tab
+              v-for="(tab, index) in tabs"
+              :key="index"
+              :href="'#' + tab.key"
+              class="justify-start"
+          >
             <template>
               <v-icon left :key="tab.key">
                 {{tab.icon}}
@@ -22,9 +39,8 @@
       </v-card>
     </v-col>
 
-    <v-col cols="7">
-
-      <router-view></router-view>
+    <v-col cols="8">
+      <OperatorsList :getActiveTabName="getActiveTabName" :activeTab="activeTab"/>
     </v-col>
   </v-row>
 </template>
@@ -35,6 +51,7 @@ import myAxios from '../plugins/myAxios';
 export default {
   name: 'Home',
   components: {
+    OperatorsList: () => import('../components/views/OperatorsList'),
   },
   data() {
     return {
@@ -57,11 +74,17 @@ export default {
       }
     },
   },
+  computed: {
+    getActiveTabName() {
+      return this.tabs?.find((tab) => tab.key === this.activeTab).name;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
   .home{
+    min-height: 100%;
 
   }
 </style>

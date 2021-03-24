@@ -16,9 +16,14 @@ const routes = [
       {
         path: ':slug',
         name: 'OperatorsTab',
-        component: () => import(/* webpackChunkName: "about" */ '../views/OperatorsTab.vue'),
+        component: () => import(/* webpackChunkName: "about" */ '../views/OperatorsPage.vue'),
       },
     ],
+  },
+  {
+    path: '/action-page/:slug',
+    name: 'ActionPage',
+    component: () => import(/* webpackChunkName: "home" */ '../views/ActionPage.vue'),
   },
 ];
 
