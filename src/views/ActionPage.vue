@@ -99,11 +99,12 @@ export default {
         title: 'Вы еще здесь?',
         btnType: ['continueWork'],
       },
-      pageData: null,
     };
   },
   async created() {
-    this.pageData = { ...await myAxios.getSlug(this.$route.params.slug) };
+    if (!this.pageData) {
+      this.pageData = { ...await myAxios.getSlug(this.slug) };
+    }
     this.setUserTimeOut();
   },
   beforeDestroy() {
@@ -128,6 +129,17 @@ export default {
     },
   },
   computed: {
+    slug() {
+      return this.$route.params.slug;
+    },
+    pageData: {
+      get() {
+        return this.$store.state.tabsCache.operators[this.slug];
+      },
+      set(val) {
+        this.$store.commit('tabsCache/setOperator', { key: this.slug, list: val });
+      },
+    },
     activeRules: {
       get() {
         return this.isFirstStep ? this.phone : this.summ;

@@ -32,17 +32,20 @@ export default {
   components: {
     OperatorCard: () => import('../components/views/OperatorCard.vue'),
   },
-  data() {
-    return {
-      operatorsList: {},
-    };
-  },
-  created() {
-    this.fetchTabOperators(this.slug);
+  async created() {
+    await this.fetchTabOperators(this.slug);
   },
   computed: {
     slug() {
       return this.$route.params.slug;
+    },
+    operatorsList: {
+      get() {
+        return this.$store.state.tabsCache.operatorsList;
+      },
+      set(val) {
+        this.$store.commit('tabsCache/setOperatorsList', { key: this.slug, list: val });
+      },
     },
   },
   watch: {
@@ -51,10 +54,10 @@ export default {
     },
   },
   methods: {
-    fetchTabOperators(slug) {
+    async fetchTabOperators(slug) {
       if (this.operatorsList[slug]) return;
-      myAxios.getTab(slug).then((data) => {
-        this.$set(this.operatorsList, slug, data.items);
+      await myAxios.getTab(slug).then((data) => {
+        this.operatorsList = data.items;
       }).catch((e) => {
         console.log(e);
       });

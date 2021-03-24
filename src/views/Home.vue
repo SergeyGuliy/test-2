@@ -39,7 +39,6 @@
           </v-tabs>
         </v-card>
       </v-col>
-
       <v-col cols="8">
         <OperatorsList :getActiveTabName="getActiveTabName" :activeTab="activeTab"/>
       </v-col>
@@ -58,11 +57,11 @@ export default {
   },
   data() {
     return {
-      tabs: null,
       activeTab: null,
     };
   },
   created() {
+    if (this.tabs) return;
     myAxios.getTabs().then((data) => {
       this.tabs = [...data];
       this.activeTab = this.tabs[0].key;
@@ -78,8 +77,16 @@ export default {
     },
   },
   computed: {
+    tabs: {
+      get() {
+        return this.$store.state.tabsCache.tabs;
+      },
+      set(val) {
+        this.$store.commit('tabsCache/setTabs', val);
+      },
+    },
     getActiveTabName() {
-      return this.tabs?.find((tab) => tab.key === this.activeTab).name;
+      return this.tabs?.find((tab) => tab.key === this.activeTab)?.name;
     },
   },
 };
