@@ -98,45 +98,45 @@ export default {
     },
     megafon: {
       img: 'megafon.png',
-      slug: 'Megafon',
+      name: 'Megafon',
     },
     mts: {
       img: 'mts.png',
-      slug: 'MTS',
+      name: 'MTS',
     },
 
     gaz: {
       img: 'gaz.png',
-      slug: 'Газ',
+      name: 'Газ',
     },
     water: {
       img: 'water.jpg',
-      slug: 'Водоснабжение',
+      name: 'Водоснабжение',
     },
     electro: {
       img: 'electro.jpg',
-      slug: 'Електросеть',
+      name: 'Електросеть',
     },
     www: {
       img: 'www.png',
-      slug: 'Интернет',
+      name: 'Интернет',
     },
 
     sber: {
       img: 'sber.jpeg',
-      slug: 'Сбербанк',
+      name: 'Сбербанк',
     },
     dota: {
       img: 'dota.png',
-      slug: 'DOTA',
+      name: 'DOTA',
     },
     wot: {
       img: 'wot.png',
-      slug: 'World of tanks',
+      name: 'World of tanks',
     },
     wow: {
       img: 'wow.png',
-      slug: 'World of warcraft 3',
+      name: 'World of warcraft 3',
     },
   },
 };

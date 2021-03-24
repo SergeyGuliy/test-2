@@ -1,5 +1,9 @@
 <template>
-  <v-container class="action-page" @click="setUserTimeOut">
+  <v-container
+      class="action-page"
+      @click="setUserTimeOut"
+      v-if="pageData"
+  >
     <ActionPageLeaveModal
         :leaveTimeout="leaveTimeout"
         :modalData="modalData"
@@ -8,10 +12,7 @@
     />
     <v-row>
       <v-col cols="12" class="pa-0">
-        <v-row
-            v-if="pageData"
-            class="mx-auto my-6 align-center"
-        >
+        <v-row class="mx-auto my-6 align-center">
           <v-col cols="12" sm="6">
             <v-img
                 :src="require(`../assets/images/${pageData.img}`)"
