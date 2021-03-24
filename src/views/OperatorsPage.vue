@@ -16,7 +16,9 @@
       <v-col
           v-for="(operator, index) in operatorsList[slug]"
           :key="index"
-          cols="3"
+          cols="6"
+          sm="4"
+          md="3"
       >
         <OperatorCard :operator="operator"/>
       </v-col>

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row class="home">
-      <v-col cols="4">
+      <v-col cols="12" md="4">
         <v-card>
           <v-toolbar
               flat
@@ -22,7 +22,7 @@
                 indeterminate
             />
           </div>
-          <v-tabs vertical v-model="activeTab" v-else>
+          <v-tabs :vertical="!$vuetify.breakpoint.smAndDown" v-model="activeTab" v-else>
             <v-tab
                 v-for="(tab, index) in tabs"
                 :key="index"
@@ -39,7 +39,7 @@
           </v-tabs>
         </v-card>
       </v-col>
-      <v-col cols="8">
+      <v-col cols="12" md="8">
         <OperatorsList :getActiveTabName="getActiveTabName" :activeTab="activeTab"/>
       </v-col>
     </v-row>
@@ -95,5 +95,8 @@ export default {
 <style lang="scss">
   .home{
     min-height: 100%;
+    @media (max-width: 950px) {
+      min-height: auto;
+    }
   }
 </style>

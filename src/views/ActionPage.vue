@@ -1,6 +1,5 @@
 <template>
   <v-container class="action-page" @click="setUserTimeOut">
-    {{pageData}}
     <ActionPageLeaveModal
         :leaveTimeout="leaveTimeout"
         :modalData="modalData"
@@ -8,10 +7,28 @@
         @goHome="goHome"
     />
     <v-row>
+      <v-col cols="12" class="pa-0">
+        <v-row
+            v-if="pageData"
+            class="mx-auto my-6 align-center"
+        >
+          <v-col cols="12" sm="6">
+            <v-img
+                :src="require(`../assets/images/${pageData.img}`)"
+                max-height="200px"
+                max-width="200px"
+            />
+          </v-col>
+          <v-col cols="12" sm="6">
+            <h1 class="headline">{{pageData.name}}</h1>
+            <p class="subtitle-1">Введите номер счета и сумму пополнения.
+              Потом в течении часа вам постяпят деньги на счет.
+            </p>
+          </v-col>
+        </v-row>
+      </v-col>
       <v-col cols="12" md="6">
         <v-row>
-          <v-col cols="12" class="pa-0">
-          </v-col>
           <v-col cols="12" class="pa-0">
             <ActionPageInput
                 v-show="isFirstStep"
@@ -35,7 +52,7 @@
         </v-row>
       </v-col>
 
-      <v-col cols="12" md="6">
+      <v-col cols="12" md="6" class="action-page__keyboard">
         <ActionPageKeyboard
             type="withSymbols"
             @press="listenKeyPress"
@@ -263,3 +280,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  .action-page{
+    .action-page__keyboard{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+</style>
