@@ -2,7 +2,7 @@
   <v-card
       class="operator-card"
       link
-      :to="{name: 'ActionPage', params: { slug: operator.slug}}"
+      @click.prevent="goTo(operator.slug)"
   >
     <v-img
         contain
@@ -14,17 +14,20 @@
 </template>
 
 <script>
+import { ActionPage } from '../../assets/js/routerNames';
+
 export default {
   name: 'OperatorCard',
-  components: {},
   props: {
     operator: {
       type: Object,
       required: true,
     },
   },
-  data() {
-    return {};
+  methods: {
+    goTo(slug) {
+      this.$router.push({ name: ActionPage, params: { slug } });
+    },
   },
 };
 </script>

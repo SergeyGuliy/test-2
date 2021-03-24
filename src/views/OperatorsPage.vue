@@ -54,9 +54,7 @@ export default {
     fetchTabOperators(slug) {
       if (this.operatorsList[slug]) return;
       myAxios.getTab(slug).then((data) => {
-        // console.log(data.items);
         this.$set(this.operatorsList, slug, data.items);
-        // this.operatorsList = [...data];
       }).catch((e) => {
         console.log(e);
       });

@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12" md="6">
+  <v-col cols="12">
     <v-row class="keyboard">
       <v-col
           cols="4"
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { KEYS_MAP } from '../../assets/js/consts';
+import { KEYS_MAP } from '../../assets/js/constants';
 
 export default {
   name: 'ActionPageKeyboard',

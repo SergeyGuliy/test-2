@@ -49,6 +49,7 @@
 
 <script>
 import myAxios from '../plugins/myAxios';
+import { OperatorsTab } from '../assets/js/routerNames';
 
 export default {
   name: 'Home',
@@ -72,7 +73,7 @@ export default {
   watch: {
     activeTab(val) {
       if (val !== this.$route.params.slug) {
-        this.$router.push({ name: 'OperatorsTab', params: { slug: val } });
+        this.$router.push({ name: OperatorsTab, params: { slug: val } });
       }
     },
   },

@@ -1,15 +1,18 @@
 <template>
-  <v-col cols="12" md="6">
+  <v-col cols="12">
     <v-form
         lazy-validation
         :ref="formKey"
         v-model="valid"
     >
+      <div class="label">
+        {{formKey === 'inputNumber'? 'Введите номер счета' : 'Введите сумму пополнения'}}
+      </div>
       <v-text-field
           v-model="inputNumber"
           v-mask="mask"
           :placeholder="mask"
-          :rules="allRules"
+          :rules="rules"
           outlined
           append-icon="mdi-backspace"
           @click:append="$emit('backspace')"
@@ -41,10 +44,6 @@ export default {
       required: true,
       type: String,
     },
-    regex: {
-      required: true,
-      type: RegExp,
-    },
     rules: {
       default: () => [],
       type: Array,
@@ -56,15 +55,6 @@ export default {
     };
   },
   computed: {
-    allRules() {
-      return [
-        ...this.rules,
-        this.regexRule,
-      ];
-    },
-    regexRule() {
-      return (v) => this.regex.test(v) || 'Не верно введены данные';
-    },
     inputNumber: {
       get() {
         return this.value;

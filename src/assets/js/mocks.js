@@ -1,22 +1,22 @@
 export default {
   tabs: [
     {
-      name: 'Operators',
+      name: 'Моб связь',
       key: 'operators',
       icon: 'mdi-cellphone-android',
     },
     {
-      name: 'Communal',
+      name: 'Комуналка',
       key: 'communal',
       icon: 'mdi-home-analytics',
     },
     {
-      name: 'Banks',
+      name: 'Банки',
       key: 'banks',
       icon: 'mdi-bank',
     },
     {
-      name: 'Games',
+      name: 'Игры',
       key: 'games',
       icon: 'mdi-gamepad-variant',
     },
@@ -29,10 +29,6 @@ export default {
         {
           img: 'beeline.jpeg',
           slug: 'beeline',
-        },
-        {
-          img: 'kievstar.png',
-          slug: 'kievstar',
         },
         {
           img: 'megafon.png',
@@ -74,20 +70,12 @@ export default {
           img: 'sber.jpeg',
           slug: 'sber',
         },
-        {
-          img: 'privat.jpg',
-          slug: 'privat',
-        },
       ],
     },
     games: {
       name: 'Games',
       key: 'games',
       items: [
-        {
-          img: 'cs.png',
-          slug: 'cs',
-        },
         {
           img: 'dota.png',
           slug: 'dota',
@@ -101,6 +89,54 @@ export default {
           slug: 'wow',
         },
       ],
+    },
+  },
+  infoBySlug: {
+    beeline: {
+      img: 'beeline.jpeg',
+      name: 'Beeline',
+    },
+    megafon: {
+      img: 'megafon.png',
+      slug: 'Megafon',
+    },
+    mts: {
+      img: 'mts.png',
+      slug: 'MTS',
+    },
+
+    gaz: {
+      img: 'gaz.png',
+      slug: 'Газ',
+    },
+    water: {
+      img: 'water.jpg',
+      slug: 'Водоснабжение',
+    },
+    electro: {
+      img: 'electro.jpg',
+      slug: 'Електросеть',
+    },
+    www: {
+      img: 'www.png',
+      slug: 'Интернет',
+    },
+
+    sber: {
+      img: 'sber.jpeg',
+      slug: 'Сбербанк',
+    },
+    dota: {
+      img: 'dota.png',
+      slug: 'DOTA',
+    },
+    wot: {
+      img: 'wot.png',
+      slug: 'World of tanks',
+    },
+    wow: {
+      img: 'wow.png',
+      slug: 'World of warcraft 3',
     },
   },
 };

@@ -1,5 +1,6 @@
 <template>
   <v-container class="action-page" @click="setUserTimeOut">
+    {{pageData}}
     <ActionPageLeaveModal
         :leaveTimeout="leaveTimeout"
         :modalData="modalData"
@@ -7,30 +8,39 @@
         @goHome="goHome"
     />
     <v-row>
-      <ActionPageKeyboard
-          type="withSymbols"
-          @press="listenKeyPress"
-      />
-      <ActionPageInput
-          v-show="isFirstStep"
-          formKey="inputNumber"
-          v-model="inputNumber"
-          :mask="phone.mask"
-          :regex="phone.regex"
-          :rules="phone.rules"
-          @backspace="backspace"
-          @submit="submitFirstStep"
-      />
-      <ActionPageInput
-          v-show="!isFirstStep"
-          formKey="inputSumm"
-          v-model="inputSumm"
-          :mask="summ.mask"
-          :regex="summ.regex"
-          :rules="summ.rules"
-          @backspace="backspace"
-          @submit="submitSecondStep"
-      />
+      <v-col cols="12" md="6">
+        <v-row>
+          <v-col cols="12" class="pa-0">
+          </v-col>
+          <v-col cols="12" class="pa-0">
+            <ActionPageInput
+                v-show="isFirstStep"
+                formKey="inputNumber"
+                v-model="inputNumber"
+                :mask="phone.mask"
+                :rules="phone.rules"
+                @backspace="backspace"
+                @submit="submitFirstStep"
+            />
+            <ActionPageInput
+                v-show="!isFirstStep"
+                formKey="inputSumm"
+                v-model="inputSumm"
+                :mask="summ.mask"
+                :rules="summ.rules"
+                @backspace="backspace"
+                @submit="submitSecondStep"
+            />
+          </v-col>
+        </v-row>
+      </v-col>
+
+      <v-col cols="12" md="6">
+        <ActionPageKeyboard
+            type="withSymbols"
+            @press="listenKeyPress"
+        />
+      </v-col>
     </v-row>
     <v-row>
     </v-row>
@@ -38,9 +48,12 @@
 </template>
 
 <script>
-import { LEAVE_ACTION_DELAY, LEAVE_ACTION_PAGE_TIMEOUT, LEAVE_ACTION_PAGE_STEP } from '../assets/js/consts';
+import { LEAVE_ACTION_DELAY, LEAVE_ACTION_PAGE_TIMEOUT, LEAVE_ACTION_PAGE_STEP } from '../assets/js/constants';
 import myAxios from '../plugins/myAxios';
-import { minSum, maxSum, required } from '../assets/js/rules';
+import {
+  minSum, maxSum, required, matchesRegex,
+} from '../assets/js/rules';
+import { Home } from '../assets/js/routerNames';
 
 export default {
   name: 'ActionPage',
@@ -63,31 +76,34 @@ export default {
       LEAVE_ACTION_PAGE_TIMEOUT,
       phone: {
         mask: '+(###) ###-###',
-        regex: /\+\([0-9]{3}\) [0-9]{3}-[0-9]{1,3}/,
         rules: [
-          (v) => !!v || 'Поле обязатено к заполнению.',
+          (v) => required(v),
+          (v) => matchesRegex(v, /\+\([0-9]{3}\) [0-9]{3}-[0-9]{1,3}/),
         ],
       },
       summ: {
         mask: '####',
-        regex: /[0-9]{1,4}/,
         rules: [
           (v) => required(v),
           (v) => minSum(v, 1),
           (v) => maxSum(v, 1000),
+          (v) => matchesRegex(v, /[0-9]{1,4}/),
         ],
       },
       inputNumber: '',
       inputSumm: '',
+
       modalData: {
         canLeavePage: false,
         type: 'error',
         title: 'Вы еще здесь?',
         btnType: ['continueWork'],
       },
+      pageData: null,
     };
   },
-  created() {
+  async created() {
+    this.pageData = { ...await myAxios.getSlug(this.$route.params.slug) };
     this.setUserTimeOut();
   },
   beforeDestroy() {
@@ -215,13 +231,12 @@ export default {
     setLeaveTimeout() {
       this.timeout.userAcceptThatHeIsHere = setInterval(() => {
         if (this.leaveTimeout >= 100) {
-          this.$router.push({ name: 'Home' });
+          this.$router.push({ name: Home });
         } else {
           this.leaveTimeout += this.LEAVE_ACTION_PAGE_TIMEOUT / this.LEAVE_ACTION_PAGE_STEP;
         }
       }, this.LEAVE_ACTION_PAGE_TIMEOUT);
     },
-
     continueWork() {
       clearInterval(this.timeout.userAcceptThatHeIsHere);
       this.leaveTimeout = 0;
@@ -229,10 +244,9 @@ export default {
       this.modalData.canLeavePage = false;
     },
     goHome() {
-      console.log('goHome');
       clearInterval(this.timeout.userAcceptThatHeIsHere);
       this.leaveTimeout = 0;
-      this.$router.push({ name: 'Home' });
+      this.$router.push({ name: Home });
     },
   },
 };

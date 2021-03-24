@@ -6,7 +6,7 @@
       dark
     >
       <div class="d-flex align-center">
-        <v-btn icon @click="$router.push({name: 'Home'})">
+        <v-btn icon @click="goHome">
           <v-icon>mdi-home</v-icon>
         </v-btn>
       </div>
@@ -21,17 +21,14 @@
 </template>
 
 <script>
+import { Home } from './assets/js/routerNames';
 
 export default {
   name: 'App',
-
-  components: {
-  },
-
-  data() {
-    return {
-
-    };
+  methods: {
+    goHome() {
+      this.$router.push({ name: Home });
+    },
   },
 };
 </script>

@@ -1,8 +1,11 @@
 import mockData from '../assets/js/mocks';
 
+const MOCK_LOAD_SPEED = 1000;
 function myGet(data) {
   return new Promise((resolve) => {
-    resolve(data);
+    setTimeout(() => {
+      resolve(data);
+    }, MOCK_LOAD_SPEED);
   });
 }
 
@@ -20,5 +23,6 @@ function myPost(data) {
 export default {
   getTabs: () => myGet(mockData.tabs),
   getTab: (tab) => myGet(mockData.tabsDetailed[tab]),
+  getSlug: (slug) => myGet(mockData.infoBySlug[slug]),
   postTransaction: (data) => myPost(data),
 };
