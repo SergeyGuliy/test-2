@@ -38,9 +38,3 @@ export default {
   },
 };
 </script>
-
-<style lang='scss'>
-  .keyboard {
-
-  }
-</style>

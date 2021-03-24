@@ -88,6 +88,5 @@ export default {
 <style lang="scss">
   .home{
     min-height: 100%;
-
   }
 </style>
