@@ -1,24 +1,17 @@
 # test-2
 
-## Project setup
+### Запуск проэкта
 ```
-npm install
+npm ci && npm run serve
 ```
+### Ссылки
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- [Link](http://test-2-task.surge.sh/main)
+- [Github](https://github.com/SergeyGuliy/test-2)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### В проэкте использовалсось
 
-### Lints and fixes files
-```
-npm run lint
-```
+- Vuetify (для упрощения работы с компонентами. И не написания стилей)
+- VueMask (для маски инпутов)
+- myAxios (моковый для REST api)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
